@@ -1,0 +1,67 @@
+# Copyright (c) 2020 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//build/lite/config/component/lite_component.gni")
+
+executable("tcp_client") {
+    sources = [
+        "tcp_client.c",
+    ]
+    include_dirs = ["//third_party/libcoap/include",]
+    deps = [
+        "//third_party/libcoap/:libcoap",
+    ]
+    output_dir = "$root_out_dir"
+}
+
+executable("tcp_server") {
+    sources = [
+       "tcp_server.c"
+    ]
+    include_dirs = ["//third_party/libcoap/include",]
+    deps = [
+        "//third_party/libcoap/:libcoap",
+    ]
+    output_dir = "$root_out_dir"
+}
+
+executable("udp_server") {
+    sources = [
+       "udp_server.c"
+    ]
+    include_dirs = ["//third_party/libcoap/include",]
+    deps = [
+        "//third_party/libcoap/:libcoap",
+    ]
+    output_dir = "$root_out_dir"
+}
+
+executable("udp_client") {
+    sources = [
+       "udp_client.c"
+    ]
+    include_dirs = ["//third_party/libcoap/include",]
+    deps = [
+        "//third_party/libcoap/:libcoap",
+    ]
+    output_dir = "$root_out_dir"
+}
+
+lite_component("socket_sample") {
+    features = [
+        ":tcp_client",
+        ":tcp_server",
+        ":udp_server",
+        ":udp_client",
+    ]
+}
+
